@@ -32,7 +32,7 @@ class OpenAntiCheat{
         return $this->eventListener;
     }
 
-    private function init() {
+    private function init() : void{
         Server::getInstance()->getPluginManager()->registerEvents(($this->eventListener = new EventListener()), $this->plugin);
     }
 }

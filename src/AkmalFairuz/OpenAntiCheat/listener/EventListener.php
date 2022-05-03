@@ -15,7 +15,7 @@ class EventListener implements Listener{
      * @param PlayerLoginEvent $event
      * @priority LOWEST
      */
-    public function onPlayerLogin(PlayerLoginEvent $event) {
+    public function onPlayerLogin(PlayerLoginEvent $event) : void{
         PlayerDataManager::new($event->getPlayer());
     }
 
@@ -23,7 +23,7 @@ class EventListener implements Listener{
      * @param PlayerQuitEvent $event
      * @priority HIGHEST
      */
-    public function onPlayerQuit(PlayerQuitEvent $event) {
+    public function onPlayerQuit(PlayerQuitEvent $event) : void{
         PlayerDataManager::destroy($event->getPlayer());
     }
 }
