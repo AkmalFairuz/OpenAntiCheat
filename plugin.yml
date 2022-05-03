@@ -1,0 +1,6 @@
+name: OpenAntiCheat
+api: 4.3.1
+version: 1.0.0
+main: AkmalFairuz\OpenAntiCheat\Loader
+load: STARTUP
+author: AkmalFairuz

@@ -1,0 +1,13 @@
+{
+  "name": "akmalfairuz/openanticheat",
+  "type": "project",
+  "require": {
+    "pocketmine/pocketmine-mp": "^4.0.0"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.2.0",
+    "phpunit/phpunit": "^9.5",
+    "friendsofphp/php-cs-fixer": "^3.4"
+  },
+  "license": "Apache-2.0"
+}
