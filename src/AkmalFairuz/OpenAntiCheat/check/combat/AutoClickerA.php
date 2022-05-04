@@ -12,9 +12,13 @@ use pocketmine\network\mcpe\protocol\ServerboundPacket;
 use pocketmine\network\mcpe\protocol\types\inventory\UseItemOnEntityTransactionData;
 use pocketmine\network\mcpe\protocol\types\LevelSoundEvent;
 
+/**
+ * Checks if the players cps goes beyond a threshold
+ */
+
 class AutoClickerA extends Check{
 
-    const CONFIG_PREFIX = "checks.autoclicker.a.";
+    const CONFIG_PREFIX = "checks.auto_clicker.a.";
 
     private int $maxCps;
 

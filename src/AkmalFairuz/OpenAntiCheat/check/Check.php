@@ -7,6 +7,7 @@ namespace AkmalFairuz\OpenAntiCheat\check;
 use AkmalFairuz\OpenAntiCheat\player\PlayerData;
 use AkmalFairuz\OpenAntiCheat\utils\Utils;
 use pocketmine\network\mcpe\protocol\ServerboundPacket;
+use pocketmine\player\Player;
 use pocketmine\Server;
 use ReflectionClass;
 use function sprintf;
@@ -43,5 +44,11 @@ abstract class Check{
 
     public function isEnabled(): bool{
         return true;
+    }
+
+    public function onJoin() : void{}
+
+    public function getPlayer() : Player{
+        return $this->getPlayerData()->getPlayer();
     }
 }

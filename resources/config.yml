@@ -1,6 +1,9 @@
 # OpenAntiCheat configuration
 checks:
-  autoclicker:
+  auto_clicker:
     a:
       enabled: true
       max_cps: 16
+  hack_client:
+    a:
+      enabled: true

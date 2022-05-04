@@ -6,6 +6,7 @@ namespace AkmalFairuz\OpenAntiCheat\listener;
 
 use AkmalFairuz\OpenAntiCheat\player\PlayerDataManager;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
@@ -26,6 +27,14 @@ class EventListener implements Listener{
      */
     public function onPlayerQuit(PlayerQuitEvent $event) : void{
         PlayerDataManager::destroy($event->getPlayer());
+    }
+
+    /**
+     * @param PlayerJoinEvent $event
+     * @priority MONITOR
+     */
+    public function onPlayerJoin(PlayerJoinEvent $event) : void{
+        PlayerDataManager::get($event->getPlayer())?->handleJoin();
     }
 
     /**

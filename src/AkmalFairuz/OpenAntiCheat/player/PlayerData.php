@@ -8,6 +8,7 @@ use AkmalFairuz\OpenAntiCheat\channel\ChannelAdapter;
 use AkmalFairuz\OpenAntiCheat\channel\PlayerChannel;
 use AkmalFairuz\OpenAntiCheat\check\Check;
 use AkmalFairuz\OpenAntiCheat\check\combat\AutoClickerA;
+use AkmalFairuz\OpenAntiCheat\check\other\HackClientA;
 use pocketmine\network\mcpe\protocol\ServerboundPacket;
 use pocketmine\player\Player;
 
@@ -26,7 +27,9 @@ class PlayerData implements PlayerDataInterface{
         $this->channelAdapter = new ChannelAdapter([
             new PlayerChannel($this->player)
         ]);
+
         $this->registerCheck(new AutoClickerA($this));
+        $this->registerCheck(new HackClientA($this));
     }
 
     private function registerCheck(Check $check) : void{
@@ -52,5 +55,11 @@ class PlayerData implements PlayerDataInterface{
 
     public function getPlayerName() : string{
         return $this->player->getName();
+    }
+
+    public function handleJoin() : void{
+        foreach($this->checks as $check) {
+            $check->onJoin();
+        }
     }
 }
