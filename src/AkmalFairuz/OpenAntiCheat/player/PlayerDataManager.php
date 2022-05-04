@@ -17,7 +17,7 @@ class PlayerDataManager{
     }
 
     public static function new(Player $player) : void{
-        self::$data[spl_object_hash($player)] = new PlayerData();
+        self::$data[spl_object_hash($player)] = new PlayerData($player);
     }
 
     public static function destroy(Player $player) : void{

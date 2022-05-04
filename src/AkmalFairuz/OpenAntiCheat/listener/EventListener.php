@@ -8,12 +8,13 @@ use AkmalFairuz\OpenAntiCheat\player\PlayerDataManager;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\event\server\DataPacketReceiveEvent;
 
 class EventListener implements Listener{
 
     /**
      * @param PlayerLoginEvent $event
-     * @priority LOWEST
+     * @priority MONITOR
      */
     public function onPlayerLogin(PlayerLoginEvent $event) : void{
         PlayerDataManager::new($event->getPlayer());
@@ -21,9 +22,22 @@ class EventListener implements Listener{
 
     /**
      * @param PlayerQuitEvent $event
-     * @priority HIGHEST
+     * @priority MONITOR
      */
     public function onPlayerQuit(PlayerQuitEvent $event) : void{
         PlayerDataManager::destroy($event->getPlayer());
+    }
+
+    /**
+     * @param DataPacketReceiveEvent $event
+     * @priority MONITOR
+     */
+    public function onDataPacketReceive(DataPacketReceiveEvent $event) : void{
+        $player = $event->getOrigin()->getPlayer();
+        if($player === null) {
+            return;
+        }
+        $packet = $event->getPacket();
+        PlayerDataManager::get($player)?->handleInbound($packet);
     }
 }

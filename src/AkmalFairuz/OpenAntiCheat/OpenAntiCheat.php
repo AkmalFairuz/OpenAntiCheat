@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AkmalFairuz\OpenAntiCheat;
 
 use AkmalFairuz\OpenAntiCheat\listener\EventListener;
+use AkmalFairuz\OpenAntiCheat\utils\Config;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
@@ -33,6 +34,8 @@ class OpenAntiCheat{
     }
 
     private function init() : void{
+        $this->plugin->saveResource("config.yml");
+        Config::load($this->plugin->getDataFolder() . "config.yml");
         Server::getInstance()->getPluginManager()->registerEvents(($this->eventListener = new EventListener()), $this->plugin);
     }
 }
